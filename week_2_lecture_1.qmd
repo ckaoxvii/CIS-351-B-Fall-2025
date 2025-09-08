@@ -1,0 +1,48 @@
+---
+title: "CIS 351 B: Week 2 Lecture 1"
+author: "Your Name"
+format: html
+---
+
+## Code Comments
+
+Code comments allow us to explain the R code that we have written. It will also make your R code easier for someone else to read. In order to write comments in an R code chunk, we start with the `#` symbol, followed the comment.
+
+**Example 1.** Evaluate cosine of pi/2 and write a code comment for your R code.
+
+```{r}
+cos(pi/2) # this line of code evaluates cosine of pi/2
+```
+
+## Scientific Notation in R
+
+R uses `e` to denote powers base 10. So in the previous example, R evaluated $\cos(\pi/2)$ to be `6.123e-17`. This should be interpreted as $6.123 \times 10^{-17} = 0.00000000000000006123$, but this can be interpreted as 0.
+
+**Example 2.** Evaluate $\pi^{200}$.
+
+
+```{r}
+pi^(200) # this evaluates pi^200.
+```
+
+## Mathematical/Statistical Functions in R
+
+**Example 3.** Evaluate log(10).
+
+```{r}
+log(10)
+```
+
+```{r}
+log(10, 10)
+```
+
+*Remark:* The `log()` function in R is base e, i.e., it is the natural log function. We specify a different base by typing a second argument inside `log()`.
+
+```{r}
+penguins <- penguins
+
+mean(penguins$body_mass_g, na.rm = TRUE) # computes the mean body mass of penguins
+
+sd(penguins$body_mass_g, na.rm = TRUE) # computes the standard deviation of penguins' body mass
+```

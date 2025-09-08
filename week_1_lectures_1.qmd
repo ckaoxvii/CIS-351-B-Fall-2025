@@ -1,0 +1,12 @@
+---
+title: "Week 1 Lecture 2"
+author: "Dr. Kao"
+format: html
+---
+
+## Doing Basic Math in R
+
+```{r}
+sin(pi/2)
+```
+

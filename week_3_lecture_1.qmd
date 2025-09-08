@@ -1,0 +1,85 @@
+---
+title: "CIS 351 B: Week 3 Lecture 1"
+author: "Your Name"
+format: 
+  html:
+    embed-resources: true
+---
+
+## Data Types in R
+
+In general, there are three data types in R.
+
+* **Numeric:** numbers, e.g., `1`, `1/2`, `pi`, `3e-10`.
+
+* **Characters:** generic texts (letters or symbols or numbers), e.g., `"Flagler"`, `"John Doe"`, `"X17_Y19"`.
+
+* **Logical (Boolean):** binary values corresponding to `TRUE` or `FALSE`.
+
+We can use the `class()` function to determine the data type of a variable.
+
+### Numeric Values
+
+```{r}
+class(1)
+```
+```{r}
+class(1/2)
+```
+
+```{r}
+class(pi)
+```
+
+```{r}
+p <- pi^2/200
+
+class(p)
+```
+
+### Character Values
+
+```{r}
+"mango"
+
+class("mango")
+```
+
+```{r}
+s <- "I like mangos."
+
+class(s)
+```
+
+**Example 1.** What is the data type of `"1"`?
+
+```{r}
+class("1")
+```
+
+```{r}
+class("09/08/2025")
+```
+
+::: {.callout-important}
+Character values are always wrapped around by quotation marks.
+:::
+
+### Logical Values
+
+```{r}
+class(TRUE)
+
+class(FALSE)
+```
+
+```{r}
+1 == 2
+```
+
+```{r}
+sin(pi/4) == cos(pi/4)
+```
+```{r}
+1 < 2
+```

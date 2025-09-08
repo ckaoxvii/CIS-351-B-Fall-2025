@@ -1,0 +1,44 @@
+---
+title: "CIS 351 B: Week 2 Lecture 2"
+author: "Your Name"
+format: 
+  html:
+    embed-resources: true
+---
+
+## Defining Variables in R
+
+One of the main features of coding in R is the ability to define **objects** or **variables**. Creating a variable involves giving a name to an object, allowing you to reference the object by name later.
+
+The symbol we use to perform variable assignment is `<-`.
+
+
+**Example 1.** Consider the first 20 places after the decimal point for $\pi$.
+
+
+```{r}
+p <- 3.14159265358979323845
+
+p^2
+
+cos(p/2)
+```
+
+**Example 2.** Find the mean, standard deviation, and the variance of the sequence 2, 3, 5, 7, 11, 13, 17, 19, 23.
+
+
+```{r}
+P <- c(2, 3, 5, 7, 11, 13, 17, 19, 23)
+
+mean(P)
+
+(2 + 3 + 5 + 7 + 11 + 13 + 17 + 19 + 23)/9
+
+sd(P) # evaluate the standard deviation of the sequence P
+
+var(P) # evaluate the variance of the of the sequence P
+```
+
+## Variable Assignment Convention
+
+In general, we will use the "lower snake case" for variable names. The lower snake case is a convention where words are all in lower cases and words are separated by the underscore symbol `_`.
