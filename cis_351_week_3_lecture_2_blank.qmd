@@ -1,0 +1,64 @@
+---
+title: "CIS 351: Week 3 Lecture 2"
+author: "Your Name"
+format: 
+  html:
+    embed-resources: true
+---
+
+## Logical Values (continued)
+
+Internally, R evaluates `TRUE` as the numeric value 1 and `FALSE` as 0.
+
+```{r}
+```
+
+```{r}
+```
+
+## `NA` Values
+
+In R, empty entries in a data set are represented by `NA`, a special type of object used to indicate missing values.
+
+```{r}
+```
+
+`NA` behaves differently compared to other data types (even `TRUE` and `FALSE`).
+
+```{r}
+```
+
+```{r}
+```
+
+In R, summary statistics cannot be calculated when a data set contains `NA` values. We will revisit this point when we discuss methods for handling and removing `NA`s.
+
+## Asking Questions With Logical Operations
+
+Mathematical equality and inequalities are considered as **logical operators** in R. You can use them to determine whether a statement is `TRUE` or `FALSE`.
+
+```{r}
+# is 3 = 4?
+
+```
+
+```{r}
+# are apple and orange the same data value?
+
+```
+
+In R, the `!` symbol is used as a negate the truth value of a statement. The symbol for "not equal to" is `!=`.
+
+```{r}
+```
+
+```{r}
+```
+
+Below is a summary of the logical operators and their respective symbols in R.
+* "equal to":
+* "not equal to":
+* "(strictly) less than":
+* "(strictly) greater than":
+* "less than or equal to":
+* "greater than or equal to"
