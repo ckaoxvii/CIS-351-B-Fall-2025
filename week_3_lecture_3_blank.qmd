@@ -1,0 +1,62 @@
+---
+title: "Vectors in R"
+author: "Your Name"
+format: 
+  html:
+    embed-resources: true
+---
+
+## Vectors
+
+R allows us to work with multiple data values at once. A **vector**-—the most fundamental data structure in R—-is essentially an ordered collection of elements. To create a vector, we use the `c()` function. A vector is often referred to as a **list** or a **set**.
+
+**Example 1.** Create a vector of heights 156, 170, 177, 180, 180, 182.
+```{r}
+```
+
+**Exercise 1.** What is the data type of `height`?
+
+```{r}
+```
+
+**Example 2.** Create a vector of the world's oceans.
+```{r}
+# a list of characters
+```
+
+**Exercise 2.** What is the data type of `oceans`?
+
+```{r}
+```
+
+We can create a vector with mixed values.
+
+```
+
+There is an inherent hierarchy to data types in R: **Character > Numeric > Logical**
+
+To find out the number of elements in a vector, we use the `length()` function.
+
+**Example 3.** How many elements are there in `heights`?
+
+```{r}
+```
+
+**Exercise 3.** How many elements are there in `oceans`?
+
+```{r}
+```
+
+## Working with Vectors
+
+By working with variable names, we can perform operations on all the elements of a given vector.
+
+**Example 4.** Subtract 10 from every element in `heights`.
+
+```{r}
+```
+
+**Exercise 4.** Find the log of every element in `heights`.
+
+```{r}
+```
