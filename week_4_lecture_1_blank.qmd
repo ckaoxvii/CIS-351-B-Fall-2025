@@ -1,0 +1,161 @@
+---
+title: "Vectorization"
+author: "Your Name"
+format: 
+  html:
+    embed-resources: true
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+library(palmerpenguins)
+```
+
+Previously, we saw that one can perform mathematical operations on a vector’s name rather than applying the same operations to each of its elements. These types of operations are called **___**. Vectorization includes statistical operations as well as mathematical operations.
+
+**Example 1.** From the `penguins` dataset, define `bw` to be the penguins' body mass. Find the following:
+
+(a) The number of observations in the vector `bw`.
+(b) Convert the body mass from grams to kilograms.
+(c) Convert the body mass from grams to pounds.
+(d) Find the mean body mass.
+(e) Find the standard deviation of the body mass.
+(f) Find the variance of the body mass.
+(g) Find the five-number summary of the body mass.
+
+*Answer.* First, let's view the `penguins` dataset.
+
+```{r}
+```
+
+Next, let's extract the `body_mass_g` column form `penguins` and name it `bw`.
+
+```{r}
+```
+
+(a) Recall that `length()` tells us the number of elements in a vector.
+
+```{r}
+```
+
+(b) To convert g to kg, note that 1 g = 0.001 kg.
+
+```{r}
+```
+
+(c) To convert g to lb, note that 1 g is roughly equal to 0.00022 lb.
+
+```{r}
+```
+
+(d) To find the mean body mass, we use the `mean()` function.
+
+```{r}
+```
+
+What happened in the above calculation? Why do you think this happened?
+
+```{r}
+```
+
+(e) Use `sd()` to find the standard deviation of `bw`.
+
+```{r}
+```
+
+(f) Use `var()` to find the variance of `bw`.
+
+```{r}
+```
+
+(g) Use `summary()` to find the five-number summary of `bw`.
+
+```{r}
+```
+
+**Exercise 1.** Define `fl` to be the flipper length column from penguins, and repeat the calculations from Example 1. For parts (b) and (c), convert the length from millimeters to centimeters and inches, respectively.
+
+(a)
+
+```{r}
+```
+
+(b)
+
+```{r}
+```
+
+(c)
+
+```{r}
+```
+
+(d)
+
+```{r}
+```
+
+(e)
+
+```{r}
+```
+
+(f)
+
+```{r}
+```
+
+(g)
+
+```{r}
+```
+
+## Vectorized Logical Operations
+
+We can similarly extend logical operations to vectors, as we did with mathematical and statistical operations.
+
+**Example 2.** Find the body masses from `penguins` that are less than or equal to 3,550 g.
+
+```{r}
+```
+
+**Exercise 2.** Find the flipper lengths from `penguins` that are greater than or equal to 197 mm.
+
+```{r}
+```
+
+**Example 3.** Find the body masses from `penguins` that are greater than the mean.
+
+```{r}
+```
+
+**Exercise 3.** Find the flipper lengths from `penguins` that are less than or equal to the median.
+
+```{r}
+```
+
+:::{.callout-warning}
+The outputs of Example 2 and Exercise 2 do not explicitly identify which penguins satisfy the required conditions. We will discuss how to circle this square later.
+:::
+
+## The `%in%` Operator
+
+If one wishes to find the body masses that are equal to the mean body mass, then the appropriate logical operation is:
+
+```{r}
+```
+
+What if we want the body masses that are equal to the mean or the median body mass? The amounts to comparing the body masses to a _list_ of values. To achieve this, we use the `%in%` operator.
+
+```{r}
+```
+
+The last line in the code chuck above can be translated as: "Find the body masses that are in a list, this list is the mean and the median body mass."
+
+**Exercise 4.** Find the flipper lengths that are the minimum or the maximum flipper lengths.
+
+```{r}
+```
