@@ -1,0 +1,116 @@
+---
+title: "Week 4 Lecture 2"
+author: "Your Name"
+format: 
+  html:
+    embed-resources: true
+---
+
+```{r}
+#| message: false
+ 
+library(tidyverse)
+
+library(janitor)
+
+library(palmerpenguins)
+```
+
+## Extract Elements From a Vector
+
+We use `c()` to create a vector. What about extract an element or elements from? To achieve this we use the `[]` operator with the syntax `df[n]`, where `df` is the name of the list/vector and `n` is the numerical position of the element you want to extract from `df`.
+
+**Example 1.** Extract the first element from `heights`.
+```{r}
+heights <- c(164, 165, 167, 170, 172, 177, 180, 182)
+```
+
+```{r}
+```
+
+**Exercise 1.** Extract the third element from `weekedays`.
+
+```{r}
+weekdays <- c("Monday", "Tuesday", "Wednesday", "Thursday", 'Friday', 'Saturday', 'Sunday')
+```
+
+```{r}
+```
+
+**Example 2.** What is the last element in `heights`?
+
+There are two ways to find the desired element. First, `heights` is a short enough list that we can simply count the number of its elements (which is 8) and extract it by doing
+
+```{r}
+```
+
+But what if the list is large? We might not necessarily know how to extract elements by counting backwards from the last element. That said, we do know that `length()` tells us the size of a list, which provides an alternative way to achieve this.
+
+```{r}
+```
+
+**Exercise 2.** What is the second to last element in `weekdays` using `length()`?
+
+```{r}
+```
+
+To extract multiple elements from a list, we use `c()` inside of `[]`.
+
+**Example 3.** What are the 2nd, 4th, and 6th elements in `heights`?
+
+```{r}
+```
+
+**Exercise 3.** What are the 1st, 3rd, and 5th elements in `weekdays`?
+
+## Removing Elements From a Vector
+
+To remove an element or elements from a vector, we simply add a `-` sign in front of the number in the `[]` operator.
+
+**Example 4.** Remove the 6th element from `heights` and rename it as `heights_2`.
+
+```{r}
+```
+
+**Exercise 4.** Remove the 3rd element from `weekdays` and rename it as `weekdays_2`.
+
+```{r}
+```
+
+To remove multiple elements from a list, we simply add a `-` in from of the `c()` inside `[]`.
+
+**Example 5.** Remove the first 3 elements from `heights` and rename it as `heights_3`.
+
+```{r}
+```
+
+**Exercise 5.** Remove the last 3 elements from `weekdays` and rename it as `weekdays_3`.
+
+## Defining Integer Sequences
+
+To create a sequence of consecutive integers, we use the `:` operator with the syntax `n:m`, where `n` is the starting integer and `m` is the ending integer.
+
+**Example 5.** Create a sequence of integers from 1 to 1000.
+
+```{r}
+```
+
+Note that the output is a vector. This means that we can assign a variable name to this sequence.
+
+```{r}
+```
+
+**Exercise 5.** Create a sequence of integers from 1000 to 1000000 and find the mean of this sequence. Name this vector `x_5`.
+
+```{r}
+```
+
+**Example 6.** Find the body mass of the 50th to the 100th penguins from `penguins`.
+
+```{r}
+```
+
+**Exercise 6.** Find the flipper lengths of the 3rd through the 50th penguins from `penguins`. What are the mean and standard deviation of these flipper lengths?
+
+```{r}
+```
