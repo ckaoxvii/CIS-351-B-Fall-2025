@@ -1,0 +1,145 @@
+---
+title: "Logical Subsetting"
+subtitle: "Week 4 Lecture 3"
+author: "Your Name"
+format: 
+  html:
+    embed-resources: true
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(palmerpenguins)
+
+conflicted::conflicts_prefer(palmerpenguins::penguins)
+```
+
+**Exercise 0.** Define the following variables from `penguins`. The `names()` function might be useful in this exercise. Define `weekdays` as a vector of characters that are the weekdays.
+
+-   `species`: species
+-   `island`: island
+-   `bl`: bill length
+-   `bd`: bill depth
+-   `fl`: flipper length
+-   `bm`: body mass
+-   `sex`: gender
+
+```{r}
+```
+
+The technical term for extracting desired elements from a vector or a data frame is called **subsetting**. Using logical operations to extract desired elements is called **logical subsetting.** First, let's see how we can use logical values to subset a vector.
+
+**Example 1.** Determine the elements in `heights` that are less than or equal to 170 cm.
+
+```{r}
+heights <- c(160, 162, 165, 168, 170, 175, 177, 180, 180, 182, 189, 193)
+```
+
+***Answer**:* We can achieve this using the following two methods.
+
+*Method 1:* We simply apply the logical operation to the variable `heights`.
+
+```{r}
+```
+
+*Method 2:* We first determine the truth value of each element in `heights`, then pass the list of truth values through `heights` via the `___` operator.
+
+```{r}
+```
+
+**Question.** Discuss the advantage and disadvantage of both methods. Is there a method that can improve on both methods?
+
+```{r}
+```
+
+**Exercise 1.** Find the top 25% of bill depths in `penguins`. The `summary()` function might be helpful to you.
+
+*Answer:*
+
+```{r}
+```
+
+**Example 2.** Find the flipper lengths that are greater than 190 mm and less than 213.
+
+*Answer:*
+
+```{r}
+```
+
+The key is to remember that $190 < \texttt{fl} < 213$ is a compound inequality: This really means that $\texttt{fl} > 190$ *and* $\texttt{fl} < 213$. The word "*and*" is a **logical conjunction** and its symbol in R is `___`.
+
+```{r}
+```
+
+**Example 3.** Find the body mass that are either in the top 25th percentile *or* the bottom 25th percentile.
+
+*Answer:* The top 25th percentile means all values that are greater than the 3rd quartile; the bottom 25th percentile means all values that are less than the 1st quartile. The logical conjunction in this instance is the word "*or*"; its symbol in R is `___`.
+
+```{r}
+```
+
+**Exercise 4.** Find the flipper lengths that are either in the top 50th percentile or the bottom 25th percentile.
+
+```{r}
+```
+
+::: callout-note
+The word "or" in English is typically used as an **exclusive or**. This means when we say "Bob is a fish or a man", we mean "Bob is a fish, or Bob is a man, but not both". (Merman is not a real thing.)
+
+However, when we use "or" in coding/math/logic, it is used as an **inclusive or**. Meaning that we do consider the case when both conditions are true. An example of such is "$x$ is greater than 10 or less than 15." There are numbers that satisfy both conditions (such as 13).
+
+In the event that we do want to use the exclusive or in R, the syntax is `____`, where `x` and `y` are logical statements.
+:::
+
+### `is.na()`
+
+We know that `NA` is an annoy value to deal with in R. Not only do we need to add the optional argument such as `na.rm = TRUE` in certain summary statistics functions, they can give us incorrect answers.
+
+**Exercise 4.** Look closely at your answers from Example 3 and Exercise 3. Are you sure these values are 100% correct? If not, why?
+
+The `is.na()` function is very useful in helping us identify and removing `NA`s in our vectors/data frames.
+
+```{r}
+```
+
+We can pass variables through `is.na()` to identify the `NA`s in the vector.
+
+```{r}
+```
+
+::: callout-caution
+Be careful of the output from `is.na()`. `is.na()` returns `TRUE` if a value is an `NA`. If `is.na()` returns `FALSE`, this mean the value is *not* `NA`.
+:::
+
+Since `is.na()` is a logical operation (i.e., the outputs are either `TRUE` or `FALSE`), we can use the negation operator `___` to return `TRUE` for values that are not `NA`.
+
+```{r}
+```
+
+Now, we can fix our code from Example 3 and Exercise 3.
+
+**Example 4.** Repeat Example 3, but leave out the `NA`s.
+
+*Answer:* We are looking for values that are *not* `NA`s *and* are either in the top 25th percentile or the bottom 25th percentile. We need to consider the "or" statement as its own condition.
+
+```{r}
+```
+
+**Exercise 4.** Repeat Exercise 3, but leave out the `NA`s.
+
+```{r}
+```
+
+Below is a summary of logical operations in all programming languages.
+
+| Operator | R Symbol | Logical Statement | Logical Meaning |
+|------------------|------------------|------------------|------------------|
+| **and** | `&` | $A$ and $B$ | $A$ is `TRUE` and $B$ is `TRUE` |
+| **or** | `|` | $A$ or $B$ | $A$ is `TRUE` or $B$ is `TRUE`, or $A$ and $B$ are both `TRUE` |
+| **exclusive or** | `xor(x, y)` | $A$ xor $B$ | $A$ is `TRUE` or $B$ is `TRUE`, but not both |
+| **negation** | `!` | not $A$ | Flips the truth value |
