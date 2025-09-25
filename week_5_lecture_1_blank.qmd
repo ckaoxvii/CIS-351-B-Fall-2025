@@ -1,0 +1,79 @@
+---
+title: "Column Names and Factors"
+subtitle: "Week 5 Lecture 1"
+author: "Your Name"
+format: 
+  html:
+    -embed-resources: true
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(palmerpenguins)
+
+conflicted::conflicts_prefer(palmerpenguins::penguins)
+```
+
+## Column Names
+
+It is often convenient to know the column names of a dataset. We can retrieve this information using the names() function.
+
+**Example 1.** Retrieve the column names of the `airquality` dataset.
+```{r}
+```
+
+Note that the columns names in `airquality` are not in lower snake case. To fix this, we pass its columns names through the `clean_names()` function from `{janitor}`:
+
+```{r}
+```
+
+**Exercise 1.** Retrieve the column names of the `iris` dataset. Convert the column names to lower snake case if the column names of `iris` is not in lower snake case. Name this new dataset `iris_2`.
+
+```{r}
+```
+
+As discussed before, we use the `$` operator to reference a particular column of a data frame. But what if we need to work with more than one column from a dataset? To achieve this, we can pass the list of column names through the `[]` operator.
+
+**Example 2.** Extract the `species` and `island` columns from `penguins.
+```{r}
+```
+
+**Exercise 2.** Extract the species, petal length, and petal width columns from `iris_2`.
+
+```{r}
+```
+
+If we knew the position of the columns, we can also reference them using the numerical value of their positions in the data frame.
+
+**Example 3.** Extract the first, second, and the sixth columns from `penguins`.
+```{r}
+```
+
+**Exercise 3.** Extract the third, fourth, and the fifth column of `iris_2`.
+
+```{r}
+```
+
+## Factors
+
+In the output of Example 2, we see that `species` and `island` are `<fct>` values rather than `character` values. `<fct>` stands for **factor**, which is a special type of categorical variable based on character values. In this case, it represents **ordinal data**. An example of ordinal data is the weekdays. Suppose that we create a vector called `weekdays` as follows.
+
+```{r}
+```
+
+**Example 3.** Check the data type of `weekdays` and check the result when passing `weekdays` through the function `sort()`.
+
+```{r}
+```
+
+This is somewhat problematic because R sorts the weekdays alphabetically. To preserve the intended order, we can pass `weekdays` through the `factor()` function and use the optional `levels` argument to specify the desired ordering of the days of the week.
+
+```{r}
+```
+
+**Exercise 3.** Create a vector named `months` that contains months of the year starting with January. Then redefine `months` into a factor data type. Apply `sort()` to check that the order of the months is preserved.
