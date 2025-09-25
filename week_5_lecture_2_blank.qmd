@@ -1,0 +1,108 @@
+---
+title: "Data Frames"
+subtitle: "Week 5 Lecture 2"
+author: "Your Name"
+format: 
+  html:
+    -embed-resources: true
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(palmerpenguins)
+
+library(readxl)
+
+conflicted::conflicts_prefer(palmerpenguins::penguins)
+```
+
+## Data Frames
+
+Very roughly speaking, a **data frame** is a collection of vectors, where all vectors have the same length. In general, data should be organized using a system called **tidy data**. Although this requires some work up front during the initial data-entry stage, the effort pays off in the long run. _The tidier your data is, the less data wrangling you will need to do._
+
+::: {.callout-note appearance='default' icon='false'}
+## Tidy Data
+
+A data frame is **tidy** if it satisfies the following three conditions:
+
+1. Each variable is a column; each column is a variable.
+2. Each observation is a row; each row is an observation.
+3. Each value is a cell; each cell is a single value.
+:::
+
+The figure below shows the rules visually.
+
+![Source: https://r4ds.hadley.nz/data-tidy.html](https://r4ds.hadley.nz/images/tidy-1.png)
+
+The `str()` function provides quick summary of the variables in your data frame.
+
+**Example 1.** Apply `class()` and `str()` to `penguins`.
+
+```{r}
+```
+
+```{r}
+```
+
+**Exercise 1.** Repeat Example 1 for the `airquality` data. Remember to pass it through `clean_names()` to change the columns to lower snake case. (cf. Week 5 Lecture 1, Example 1.)
+
+```{r}
+```
+
+## Loading Data into R
+
+::: {.callout-note appearance='default' icon='false'}
+## Loading csv files
+
+1. Make sure that the `.csv` file is in your current working directory.
+2. Use the syntax `read_csv('filename.csv')` to load the file.
+:::
+
+**Example 2.** Download the `week_5_penguins.csv` file from the course Github repository and save it to your Week 5 folder. Then load the `.csv` file into your R session as `df_1`. Display the data frame by printing `df_1` in an R code chunk to be sure the dataset is imported correctly.
+
+```{r}
+```
+
+**Exercise 2.** Repeat Example 2 for the `week_5_airquality.csv` file from the course Github repository. Name the dataset `df_2`
+
+```{r}
+```
+
+::: {.callout-note appearance='default' icon='false'}
+## Loading Excel files
+
+1. Make sure that the `.xlsx` or `.xls` file is in your current working directory.
+2. You must load the package `readxl` by running `library(readxl)`. You will need to install the package if it is not installed.
+3. Use the syntax `read_excel('filename.xlsx')` or `read_excel('filename.xls')` to load the file.
+4. If the Excel file has multiple sheets, then you can list the sheet names with `excel_sheets('filename.xlsx')`.
+5. To load a particular sheet into R, run `read_excel("filename.csv", sheet = 'sheet_name')`.
+:::
+
+**Example 3.** Download the `week_5_dataframes.xlsx` from the course Github repository and save it in your Week 5 folder. Check the sheet names in the Excel file. Import the first sheet and name it `df_3`.
+
+```{r}
+```
+
+```{r}
+```
+
+::: {.callout-note appearance='default' icon='false'}
+## Loading data from the web
+
+If you have the url to a csv that is on the web, you can import is directly using `read_csv("url")`. 
+:::
+
+**Example 4.** Import the `week_5_penguins.csv` from the course Github repository by using the url of the `.csv` file. Name this new import `df_4`.
+
+```{r}
+```
+
+**Exercise 4.** Import the `week_5_airquality.csv` from the course Github repository by using the url of the `.csv` file. Name this import `df_5`.
+
+```{r}
+```
