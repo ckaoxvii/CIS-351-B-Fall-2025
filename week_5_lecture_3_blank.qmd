@@ -1,0 +1,99 @@
+---
+title: "Attributes of a Data Frame"
+subtitle: "Week 5 Lecture 3"
+author: "Your Name"
+format: 
+  html:
+    -embed-resources: true
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(palmerpenguins)
+
+library(readxl)
+
+library(gapminder)
+
+library(nycflights13)
+
+conflicted::conflicts_prefer(palmerpenguins::penguins)
+```
+
+In this section, we will cover some helpful function that will provide us information about datasets we are working with. Note that the packages `gapminder` and `nycflights13` are loaded in the first code chunk. If the above code chunk gave you and error, you will need to install these packages.
+
+The utility functions we will cover are
+
+* `names()`
+* `clean_names()`
+* `dim()`
+* `str()`
+* `summary()`
+
+## `names()`
+
+The `names()` function tells us the column names of a data frame.
+
+**Example 1.** Find the column names of `gapminder`.
+
+```{r}
+```
+
+**Exercise 1.** Find the column names of `airquality`.
+
+```{r}
+```
+
+Note that the column names are in camel case rather than in lower snake case. To change this, we apply the `clean_name()` function.
+
+**Example 2.** Define `gapminder_2` to be the same dataset as `gapminder`, but with all of its column names converted to lower snake case.
+
+```{r}
+```
+
+**Exercise 2.** Define `aiquality_2` to be the same dataset as `airquality`, but with all of its column names converted to lower snake case.
+
+```{r}
+```
+
+We use `dim()` to determine the size of a data frame. The first value in the output represents the number of rows, and the second value represents the number of columns.
+
+**Example 3.** Determine the size of `gapminder_2`.
+
+```{r}
+```
+
+There are 1704 rows and 6 columns in `gapminder_2`.
+
+**Exercise 3.** Dtermine the size of `penguins`.
+
+```{r}
+```
+
+The `str()` function provides the structure of a data frame. It displays both the dimensions of the dataset and information about each column.
+
+**Example 4.** Pass `gapminder_2` through `str()` and determine the the data type of each column.
+
+```{r}
+```
+
+There are 1704 columns and 6 columns. `country` and `continent` are factors, whereas `year`, `life_exp`, `pop`, and `gdp_percap` are numerical columns.
+
+**Exercise 4.** Determine the size of `flights` dataset and the data type of each column.
+
+```{r}
+```
+
+Similar to using `summary()` on a vector, applying `summary()` to a data frame returns summary statistics for all the columns in the dataset. Note that if a column is of type `character` or `factor`, `summary()` provides only the count of each category within that column.
+
+**Example 5.** Find the summary statistics of the columns in `gapminder_2`.
+
+```{r}
+```
+
+**Exercise 5.** Find the summary statistics of the columns in `flights`.
