@@ -1,0 +1,92 @@
+---
+title: "The `{dplyr}` Package"
+subtitle: "Week 6 Lecture 1"
+author: "Your Name"
+format: 
+  html:
+    -embed-resources: true
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(palmerpenguins)
+
+library(readxl)
+
+library(gapminder)
+
+library(nycflights13)
+
+conflicted::conflicts_prefer(palmerpenguins::penguins)
+```
+
+## Introduction to `{dplyr}`
+
+The `{dplyr}` package contains many useful data-wrangling functions that make it easier to transform data and extract useful information. In this course, we will cover the following functions and operators:
+
+* `select()`: 
+* `arrange()`: 
+* `filter()`: 
+* `mutate()`: 
+* `|>`: 
+* `summarize()`: 
+* `pivot_longer()`/`pivot_wider()`: 
+* `left_join()`: 
+
+## `select()`
+
+In base R, we can extract columns using either the `$` operator or the `[]` operator. You can perform all the necessary data transformations with these operators; however, each has some shortcomings:
+
+1. The `$` operator allows you to extract only one column at a time from a data frame.
+2. The `[]` operator can be difficult to read, especially when logical operations are included inside.
+
+The `select()` function provides an alternative way to extract columns from a data frame. The syntax `select(df, col1, col2, ...)`.
+
+**Example 1.** From `starwars` dataset, extract the columns containing the character names, their homeworld, species, and the films in which they appeared. Name this collection of columns `df_1`.
+
+_Solution._ We first check the column names of `starwars`. 
+
+```{r}
+```
+
+Then use `select()` to extract the desired columns.
+
+```{r}
+```
+
+**Exercise 1.** From the `storms` dataset, extract the storm names; the year, month, day, and hour of the report; the storm locations, and their categories. Name this subset `exc_1`.
+
+
+```{r}
+```
+
+## `arrange()`
+
+The `arrange()` function orders the rows of the data frame by the values of select columns. The advantage of `arrange()` is that it allows users to perform multiple sorting in the same function.
+
+**Example 2.** Sort the `starwars` dataset first by character names, then by their homeworlds, then by species.
+
+```{r}
+```
+
+**Exercise 2.** Sort the `storms` dataset by categories, then by names.
+
+```{r}
+```
+
+If you wish to sort a particular variable in a descending order, then you would wrap `desc()` around the variable name.
+
+**Example 3.** Sort the `starwars` characters form the tallest to the shortest.
+
+```{r}
+```
+
+**Exercise 3.** Sort penguins from `penguins` dataset from the heaviest to the lightest.
+
+```{r}
+```
