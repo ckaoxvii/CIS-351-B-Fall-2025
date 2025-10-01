@@ -1,0 +1,99 @@
+---
+title: "The `{dplyr}` Package"
+subtitle: "Week 6 Lecture 2"
+author: "Your Name"
+format: 
+  html:
+    -embed-resources: true
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(palmerpenguins)
+
+library(readxl)
+
+library(gapminder)
+
+conflicted::conflicts_prefer(palmerpenguins::penguins)
+
+conflicted::conflicts_prefer(dplyr::filter)
+```
+
+## Data Upload
+
+We will use the following dataset on the number of objects launched into space.
+
+```{r}
+outer_space_objects <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-04-23/outer_space_objects.csv')
+```
+
+## `filter()`
+
+`filter()` is used to subset rows of your data where certain logical conditions on the columns can be applied. Its syntax is `filter(.data, ...)`.
+
+**Example 1.** Subset out the penguins whose body mass is greater than the mean body mass.
+
+```{r}
+```
+
+**Exercise 1.**  Subset out the penguins whose flipper length is either in the top 25th percentile or the bottom 25th percentile.
+
+```{r}
+```
+
+The issue with subsetting data as we did in Example 1 and Exercise 1 is that there are multiple species and genders of penguins. It is more appropriate to compare the numerical data within the appropriate group. In this respect, we can specify the the group we want in the `filter()` function with the optional argument `.by = ...`.
+
+**Example 2.** Subset out the penguins who body mass is greater than the mean body mass of their respective species.
+
+```{r}
+```
+
+**Exercise 2.** Determine the which penguins who flipper length is less than the mean flipper length of their respective species.
+
+```{r}
+```
+
+::: {.callout-note}
+1. To filter by more than one group, simply do
+```
+filter(df, ..., .by = c('group_1', 'group_2', ...))
+```
+
+2. The following operators can be used inside of `filter()`:
+
+  * `==`, `>`, `<`, `>=`, `<=`
+  * `&`, `|`, `!`, `xor()`
+  * `is.na()`
+:::
+
+## `mutate()`
+
+The `mutate()` is a powerful one-stop shop that can add, delete, or modify columns in a data frame. Its syntax is `mutate(.data, ...)`.
+
+**Example 3.** Add a new column of body mass in pounds in `penguins`.
+
+```{r}
+```
+
+**Exercise 3.** Add two new columns to `penguins`, bill length and bill depth in inches.
+
+```{r}
+```
+
+## `summarize()`
+
+`summarize()` can produce the desired summary statistics, but note that the output does not contain the dataset you passed into the function. Similar to `mutate()`, `summarize()` allows you to find summary statistics by group.
+
+**Example 4.** Calculate the mean, standard deviation, and the variance of the penguins' body mass. Then do it again by their species.
+
+```{r}
+```
+
+```{r}
+```
