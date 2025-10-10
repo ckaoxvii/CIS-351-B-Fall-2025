@@ -1,0 +1,79 @@
+---
+title: "The `{dplyr}` Package"
+subtitle: "Week 7 Lecture 1"
+author: "Your Name"
+format: 
+  html:
+    -embed-resources: true
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(palmerpenguins)
+
+library(readxl)
+
+library(gapminder)
+
+library(DT)
+
+conflicted::conflicts_prefer(palmerpenguins::penguins)
+
+conflicted::conflicts_prefer(dplyr::filter)
+```
+
+```{r}
+df_1 <- read_excel("C:/Users/ckao/Documents/CIS 351 A 2025 10/Week 7/group3_LATE_19387_2667281_Capstone Data-1.xlsx") |> 
+  clean_names() |> 
+  select(number_of_sites:number_of_species_and_different_distances) |> 
+  slice(1:22) |> # selecting rows 1 through 22
+  mutate(
+    predator = case_when(
+      predator == 'n/a' ~ NA, # convert all 'n/a' to NA
+      TRUE ~ predator # keeping everything the same
+    ),
+    site = factor(number_of_sites), # convert number_of_sites to site as a column of factors
+    camera_number = factor(camera_number), # convert camera_number to a factor column
+    distance_from_trail_m = as.numeric(distance_from_trail_m), # convert distance_from_trail_m to a numeric column
+    nest_site = factor(nest_site_number), # convert nest_site_number to nest_site
+    days_of_survival = as.numeric(days_of_survival), # convert to numeric
+    species_observed_count = as.numeric(number_of_species_observed), # convert to numeric
+    .keep = 'unused' # discard all columns that were altered 
+  ) |> 
+  relocate(site) |> # move site to the front of the data frame
+  relocate(nest_site, .before = distance_from_trail_m) |> # move nest_site to the left of distance_from_trail_m
+  relocate(species_observed_count, .after = species_name) |> # move species_observed_count to the right of species_name
+  arrange(site) |> 
+  select(-13)
+```
+
+
+```{r}
+# find the max number of species in the species_name column
+max_species_count = max(str_count(df_1$species_name, ",") + 1)
+
+# split species_name into 8 different columns, where each column only has one species
+df_1a <- df_1 |> 
+  separate(
+    species_name,
+    into = paste0("species_name_",  1:max_species_count),
+    sep = ', ',
+    fill = 'right'
+  ) |> 
+  pivot_longer( 
+    cols = starts_with("species_name_"), 
+    names_to = 'species_name',
+    values_drop_na = TRUE
+  ) |> 
+  mutate(
+    species_name = value,
+    .keep = 'unused'
+  )
+
+df_1a
+```
