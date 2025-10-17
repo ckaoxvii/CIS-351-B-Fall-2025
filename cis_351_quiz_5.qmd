@@ -1,0 +1,109 @@
+---
+title: "CIS 351 Quiz 5"
+subtitle: "Fall 2025"
+author: "Your Name"
+format: 
+  html:
+    embed-resources: true
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(palmerpenguins)
+```
+
+**Instructions:**
+
+1. Finding errors and debugging code is an essential skill for any data scientist. In this quiz, you will be presented with several code snippets that contain errors. Your task is to identify and correct these errors. _Render the quarto document to read the error messages._
+
+2. For each code snippet, explain what the error is and provide the corrected version of the code. Each question only has one error.
+
+3. Work in groups of two. Make sure both group members' names are included at the top of the quiz.
+
+4. Render your quarto document and submit the resulting HTML file.
+
+**Sample Question**
+```{r}
+#| error: true
+#| warning: false
+
+df_0 < - penguins |> select(species) 
+```
+
+**Error Explanation:** The assignment operator is incorrect. It should be `<-` instead of `< -`. The correct code should be
+
+```{r}
+df_0 <- penguins |> 
+  select(species)
+```
+
+**Question 1.**
+
+```{r}
+#| error: true
+#| warning: false
+
+df_1 <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-10-08/most_visited_nps_species_data.csv')
+
+name(df_1)
+```
+
+**Question 2.**
+
+```{r}
+#| error: true
+#| warning: true 
+ 
+df_2 <- df_1 |> 
+  clean_names() |> 
+  select(park_code, park_name, category_name, common_name, nps_tags)
+```
+
+**Question 3.**
+
+```{r}
+#| error: true
+#| warning: true
+
+df_3 <- df_1 |> 
+  clean_names() |> 
+  filter(category_name = 'Mammal')
+```
+
+
+**Question 4.**
+
+```{r}
+#| error: true
+#| #| warning: true
+
+df_4 <- df_1 |> 
+  clean_names() |>
+  summarize(
+    mean_observation = mean(observations, na.rm = TRUE),
+    .by = park_name
+  )
+```
+
+**Question 5.**
+
+```{r}
+#| error: true
+#| #| warning: true
+
+df_5 <- df_1 |> 
+  clean_names() |> 
+  summarize(
+    total_observations = sum(observations, na.rm = TRUE),
+    mean_observations = mean(observations, na.rm = TRUE),
+    by = park_name
+  ) |> 
+  arrange(desc_total_observations)
+```
