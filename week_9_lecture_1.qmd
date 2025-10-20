@@ -1,0 +1,115 @@
+---
+title: "Combining Data Frames"
+subtitle: "Week 9 Lectures 1"
+author: "Your Name"
+format: 
+  html:
+    -embed-resources: true
+---
+
+```{r}
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(palmerpenguins)
+
+library(readxl)
+
+library(gapminder)
+
+library(gt)
+
+conflicted::conflicts_prefer(palmerpenguins::penguins)
+
+conflicted::conflicts_prefer(dplyr::filter)
+```
+
+## Merging Data Frames Using `left_join()`
+
+We often obtain data sets where we need combine give data sets. This can be achieved using the `left_join()` function. Its syntax is `left_join(df_1, df_2, by = 'key')`.
+
+**Example 1.** Suppose we are give the following data frames. Combine the data frames into a single data frame.
+
+```{r}
+df_1 <- data.frame(
+  id = c('100', '101', '102'),
+  name = c('Alice', 'Bob', 'Charlie')
+)
+
+df_2 <- data.frame(
+  id = c('100', '101', '102'),
+  height = c(160, 182, 180)
+)
+```
+```{r}
+df_3 <- df_1 |> 
+  left_join(df_2, by = 'id')
+
+df_3
+```
+
+```{r}
+df_4 <- data.frame(
+  id = c('100', '101', '103'),
+  home_state = c('FL', 'MI', 'GA')
+)
+
+df_5 <- df_1 |> 
+  left_join(df_4, by = 'id')
+
+df_5
+
+df_6 <- df_1 |> 
+  right_join(df_4, by = 'id')
+
+df_6
+
+df_7 <- df_1 |> 
+  full_join(df_4, by = 'id')
+
+df_7
+```
+
+**Example 2.** Combine the following two data frames with two columns in common.
+
+```{r}
+df_8 <- data.frame(
+  id = c('201', '202', '203'),
+  name = c('David', 'Erin', 'Frank'),
+  home_state = c('NY', 'PA', 'MA')
+)
+
+df_9 <- data.frame(
+  id = c('201', '202', '215'),
+  name = c('David', 'Erin', 'George'),
+  hair_color = c('brown', 'blonde', 'white')
+)
+
+df_10 <- df_8 |> 
+  left_join(df_9, by = 'id')
+
+df_10
+
+df_11 <- df_8 |> 
+  left_join(df_9, by = c('id', 'name'))
+
+df_12 <- df_8 |> 
+  full_join(df_9, by = c('id', 'name')) # full_join = union of two sets
+
+df_12
+
+df_13 <- df_8 |> 
+  semi_join(df_9, by = c('id', 'name')) # semi_join = intersection of two sets
+
+df_13
+
+df_8 |> 
+  anti_join(df_9, by = c('id', 'name')) #  anti_join = observations in df_8 that are not in df_9
+
+df_9 |> 
+  anti_join(df_8, by = c('id', 'name')) # observations in df_9 but not in df_8
+```
