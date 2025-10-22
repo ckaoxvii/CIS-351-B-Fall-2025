@@ -1,0 +1,107 @@
+---
+title: "Data Visualization Using `{ggplot2}`"
+subtitle: "Week 9 Lecture 2"
+author: "Your Name"
+format: 
+  html:
+    -embed-resources: true
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(palmerpenguins)
+
+library(readxl)
+
+library(gapminder)
+
+library(DT)
+
+conflicted::conflicts_prefer(palmerpenguins::penguins)
+
+conflicted::conflicts_prefer(dplyr::filter)
+```
+
+## Introduction
+
+In COR 14X, we learned to visualize **numerical data** using **histograms**, and **categorical data** using **bar charts**. **Scatter plots** are used to visualize the **relationship between two numerical variables**, and **box plots** are used to visualize **numerical data across groups**.
+
+We will primarily use `{ggplot2}` package to generate plots. The `gg` in `{ggplot2}` stands for **grammar of graphics**. 
+
+## Histogram
+
+**Example 1.** Plot the penguins' body mass.
+
+*Method 1:* Using base R.
+
+```{r}
+plot_1a <- hist(penguins$body_mass_g)
+
+plot_1a
+```
+
+*Method 2:* Using `{ggplot2}`.
+
+```{r}
+plot_1b <- penguins |> 
+  ggplot(
+    aes(x = body_mass_g)
+  ) +
+  geom_histogram()
+
+plot_1b
+```
+
+```{r}
+plot_1c <- penguins |> 
+  ggplot(
+    aes(x = body_mass_g)
+  ) +
+  geom_histogram(
+    binwidth = 500,
+    fill = 'skyblue',
+    color = 'blue'
+  ) +
+  labs(
+    title = "Distribution of Penguins' Body Mass",
+    x = 'Body Mass (g)',
+    y = 'Count'
+  )
+
+plot_1c
+```
+
+```{r}
+plot_1c +
+  theme_bw()
+```
+
+```{r}
+plot_1c +
+  theme_classic()
+```
+
+```{r}
+plot_1d <- penguins |> 
+  ggplot(
+    aes(x = flipper_length_mm)
+  ) +
+  geom_histogram(
+    binwidth = 5,
+    color = '#A90533',
+    fill = '#F08DA8'
+  ) +
+  labs(
+    title = "Distribution of Penguins' Flipper Length",
+    x = 'Flipper Length (mm)',
+    y = 'Count'
+  ) +
+  theme_classic()
+
+plot_1d
+```
