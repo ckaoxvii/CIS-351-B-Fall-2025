@@ -19,6 +19,8 @@ library(janitor)
 
 library(palmerpenguins)
 
+penguins$id <- 1:nrow(penguins)
+
 df_1 <- penguins |> 
   select(id, species, island, flipper_length_mm)
 
