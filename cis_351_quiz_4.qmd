@@ -1,0 +1,106 @@
+---
+title: "CIS 351 Quiz 4"
+subtitle: "Fall 2025"
+author: "Your Name"
+format: 
+  html:
+    code-line-numbers: true
+    embed-resources: true
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(palmerpenguins)
+
+df_1 <- penguins |> 
+  select(id, species, island, flipper_length_mm)
+
+df_2 <- penguins |> 
+  select(id, species, island, body_mass_g)
+```
+
+**Instructions:**
+
+1. Finding errors and debugging code is an essential skill for any data scientist. In this quiz, you will be presented with several code snippets that contain errors. Your task is to identify and correct these errors. _Render the quarto document to read the error messages._
+
+2. For each code snippet, there is only one error. Identify the error and the line of code where it occurs. Then, provide the corrected version of the code snippet in the Correction callout box. Always end your corrected code with a line that displays the first few rows of the resulting data frame using the `head()` function.
+
+3. Work in groups of two. Make sure both group members' names are included at the top of the quiz.
+
+4. Render your quarto document and submit the resulting HTML file.
+
+:::{.callout-tip appearance="default" icon="false"}
+**Question 1.**
+
+```{r}
+#| error: true
+#| warning: false
+
+df_3 <- df_1 |>
+  left_join(df_2, by = 'ID') 
+```
+:::
+
+::: {.callout-note appearance="default" icon="false"}
+# Error Explanation
+
+:::
+
+::: {.callout-important appearance="default" icon="false"}
+# Correction
+```{r}
+```
+:::
+
+:::{.callout-tip appearance="default" icon="false"}
+**Question 2.**
+
+```{r}
+#| error: true
+#| warning: false
+
+df_3 <- df_1 |>
+  right_join(df_2 .by = 'island') 
+```
+:::
+
+::: {.callout-note appearance="default" icon="false"}
+# Error Explanation
+
+:::
+
+::: {.callout-important appearance="default" icon="false"}
+# Correction
+```{r}
+```
+:::
+
+:::{.callout-tip appearance="default" icon="false"}
+**Question 3.**
+
+```{r}
+#| error: true
+#| warning: false
+
+df_3 <- df_2 |>
+  inner_ join(df_2, by = 'island') 
+```
+:::
+
+::: {.callout-note appearance="default" icon="false"}
+# Error Explanation
+
+:::
+
+::: {.callout-important appearance="default" icon="false"}
+# Correction
+```{r}
+```
+:::
