@@ -1,0 +1,78 @@
+---
+title: "Introduction to Data Visualization"
+subtitle: "Week 11 Lectures 1"
+author: "Your Name"
+format: 
+  html:
+    -embed-resources: true
+---
+
+```{r}
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(palmerpenguins)
+
+library(readxl)
+
+library(gapminder)
+
+library(gt)
+
+library(datasauRus)
+
+library(ggpubr)
+
+conflicted::conflicts_prefer(palmerpenguins::penguins)
+
+conflicted::conflicts_prefer(dplyr::filter)
+```
+
+# Boxplot
+
+Boxplots are a great way to visualize the distribution of a continuous variable across different categories. They display the median, quartiles, and potential outliers in the data.
+
+**Example 1.** Visualize the distribution of flipper lengths across different penguin species.
+
+```{r}
+```
+
+One can easily change the boxplot from vertical to horizontal by adding the `coord_flip()` function.
+
+
+```{r}
+```
+
+## Boxplot With Dots
+
+Adding individual data points to a boxplot can provide additional context about the distribution of the data. This can be done using `geom_jitter()`.
+
+
+```{r}
+```
+
+# Scatterplot
+
+Scatterplots are used to visualize the relationship between two continuous variables. They can help identify correlations, trends, and potential outliers in the data. Normally, we use `geom_point()` to create scatterplots. However, we often need to add additional information to the plot, we will use the `{ggpubr}` package.
+
+**Example 2.** Visualize the relationship between flipper length and body mass in penguins.
+
+```{r}
+```
+
+**Example 2.** Add a regression line to the scatterplot to visualize the trend.
+
+```{r}
+```
+
+**Example 3.** Summarize the `datasaurus_dozen` dataset to compute the mean, median, standard deviation, and variance for both `x` and `y` variables, grouped by the `dataset` variable. Based on the summary statistics, what can you say about these different datasets?
+
+```{r}
+```
+
+```{r}
+```
