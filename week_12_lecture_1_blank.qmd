@@ -1,0 +1,77 @@
+---
+title: "Introduction to Data Visualization"
+subtitle: "Week 11 Lectures 1"
+author: "Your Name"
+format: 
+  html:
+    -embed-resources: true
+---
+
+```{r}
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(palmerpenguins)
+
+library(readxl)
+
+library(gapminder)
+
+library(gt)
+
+library(datasauRus)
+
+library(ggpubr)
+
+conflicted::conflicts_prefer(palmerpenguins::penguins)
+
+conflicted::conflicts_prefer(dplyr::filter)
+```
+
+# Line Graphs
+
+Line graphs are used to display trends over time or ordered categories. They are particularly useful for showing how a variable changes continuously.
+
+**Example 1.** Create a line graph to show the trend of population growth over time in the US.
+
+Step 1. Load and clean the data.
+
+```{r}
+
+```
+
+Step 2. Create the line graph.
+
+```{r}
+
+```
+
+Step 3. Customize the graph.
+
+```{r}
+
+```
+
+**Example 2.** Create a line graph to show the population growth over time for the US and _____.
+
+Step 1. Load and clean the data.
+
+```{r}
+
+```
+
+Step 2. Create the line graph.
+
+```{r}
+
+```
+
+Step 3. Customize the graph.
+
+```{r}
+
+```
